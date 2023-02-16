@@ -23,15 +23,9 @@
         // die(date("H:i:s"));
         $stmt->execute();
         echo "User updated";
-        <h1>KAYIT GÜNCELLEME</h1>
-        
-        <form method='POST'>
-            <p>user name:  <input type='text' name='name'  value='<?php echo $user['name'];  ?>'></p>
-            <p>user email: <input type='text' name='email' value='<?php echo $user['email']; ?>'></p>
-            <p><input type='submit' value='GÜNCELLE'></p>
-        </form>
-        
-        <p><a href='list.html'>User List</a></p>
+    }
+
+    $id    = $_GET['id'];
 
     $sql = "SELECT * FROM users WHERE id = :id";
     $stmt = $conn->prepare($sql);
