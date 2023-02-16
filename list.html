@@ -1,19 +1,62 @@
-<h1>KAYITLI KULLANICILAR</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+</head>
+<body>
+    
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-<?php
+<div id="app">
+    
+    <h1>REGISTERED USERS</h1>
 
-require_once('db.php');
+    <!-- <pre>{{ users[0] }}</pre> -->
 
-$stmt = $conn->prepare("SELECT id, name, email FROM users");
-$stmt->execute();
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//echo '<pre>'; print_r($users);
+    <table border='1' cellpadding='10' cellspacing='0' width='500'>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>EMail</th>
+        </tr>
+        <tr v-for="user in users">
+            <td>{{user.id}}</td>
+            <td nowrap>{{user.name}}</td>
+            <td nowrap>{{user.email}}</td> 
+        </tr>
+    </table>
+    
+    
+    <ul>
+        <li v-for="user in users"><b>id:</b>{{user.id}} <b>name:</b>{{user.name}} <b>email:</b>{{user.email}}</li>
+    </ul>
 
-foreach($users as $user) {
-    echo " {$user['id']} : {$user['name']}, {$user['email']} ";
-    echo "<a href='update.php?id={$user['id']}'>Güncelle</a>";
-    echo "<a href='delete.php?id={$user['id']}'>Sil</a>";
-    echo "<br>";
-}
+</div>
 
-echo "<p><a href='index.php'>ANASAYFAYA DÖN</a></p>";
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        users:[],
+      }
+    },
+
+    mounted (){
+        fetch('list.php')
+        .then(response => response.json())
+        .then(json =>{
+            // console.log(json)
+            this.users = json
+        })
+    }
+  }).mount('#app');
+
+</script>
+
+</body>
+</html>
