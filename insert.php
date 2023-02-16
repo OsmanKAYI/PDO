@@ -14,5 +14,8 @@ if(isset($_POST['name'])){
     $stmt->bindParam(':email', $email);
 
     $stmt->execute();
-    echo "User created";
+    
+    $result = [];
+    $result['message'] = "User created";
+    echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }
