@@ -15,8 +15,8 @@
     <h1>REGISTER</h1>
 
 <pre>
-    <b>User Name:</b> <input id="input" type="text" v-model="name"><br>
-    <b>eMail:    </b> <input id="input" type="text" v-model="email"><br>
+    <b>User Name:</b> <input type="text" v-model="name"><br>
+    <b>eMail:    </b> <input type="text" v-model="email"><br>
     <button @click="register">REGISTER</button>
 </pre>
 
@@ -48,9 +48,8 @@
             })
             .then(response => response.json())
             .then(json =>{
-                // console.log(json)
-                this.result = json
-            
+                console.log(json)
+                alert(json.message)
             })
         }
     }
