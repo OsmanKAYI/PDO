@@ -50,7 +50,14 @@
             .then(json =>{
                 console.log(json)
                 alert(json.message)
+                this.clearForm()
+                
             })
+        },
+
+        clearForm(){
+            this.name =''
+            this.email=''
         }
     }
   }).mount('#app');
