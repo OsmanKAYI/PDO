@@ -6,4 +6,4 @@ $stmt = $conn->prepare("SELECT id, name, email FROM users");
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo json_encode($users);
+echo json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
