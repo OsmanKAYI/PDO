@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+    
+    <h1>REGISTER</h1>
+
+<pre>
+    <b>User Name:</b> <input id="input" type="text" v-model="name"><br>
+    <b>eMail:    </b> <input id="input" type="text" v-model="email"><br>
+    <button @click="register">REGISTER</button>
+</pre>
+
+    <p><a href='index.php'>Homepage</a></p>
+    
+</div>
+
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        name:'',
+        email:''
+      }
+    },
+
+    methods: {
+        register(){
+            const formData = new FormData();
+            formData.append('name',  this.name);
+            formData.append('email', this.email);
+        
+            fetch('insert.php',
+            {
+                method: 'post',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(json =>{
+                // console.log(json)
+                this.result = json
+            
+            })
+        }
+    }
+  }).mount('#app');
+
+</script>
+
+</body>
+</html>
