@@ -21,11 +21,15 @@
             <th>ID</th>
             <th>Name</th>
             <th>EMail</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         <tr v-for="user in users">
             <td>{{user.id}}</td>
             <td nowrap>{{user.name}}</td>
-            <td nowrap>{{user.email}}</td> 
+            <td nowrap>{{user.email}}</td>
+            <td><button @click="update">O</button></td>
+            <td><button @click="delete">X</button></td>
         </tr>
     </table>
     
@@ -54,6 +58,53 @@
             // console.log(json)
             this.users = json
         })
+    },
+
+    mehods: {
+
+        update(){
+            const formData = new FormData();
+            formData.append('name',  this.name);
+            formData.append('email', this.email);
+
+            // fetch("https://localhost/vue3/number.sum.php",
+            fetch("update.php",
+            {
+                method: 'post',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                this.reloadForm()
+
+            })
+        }, // update
+
+
+        delete(){
+            const formData = new FormData();
+            formData.append('name',  this.name);
+            formData.append('email', this.email);
+
+            // fetch("https://localhost/vue3/number.sum.php",
+            fetch("delete.php",
+            {
+                method: 'post',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                alert(json.message)
+                this.reloadForm()
+            })
+        }, // delete
+
+        reloadForm(){
+            
+        }
+
     }
   }).mount('#app');
 

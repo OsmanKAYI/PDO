@@ -12,4 +12,4 @@ $stmt->bindParam(':id', $id);
 
 $stmt->execute();
 echo "User deleted";
-echo "<p><a href='list.php'>Listeye Dön</a></p>";
+echo "<p><a href='list.html'>User List</a></p>";
