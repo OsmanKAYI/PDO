@@ -18,4 +18,9 @@ if(isset($_POST['name'])){
     $result = [];
     $result['message'] = "User created";
     echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+}else{
+
+    $result = [];
+    $result['message'] = "Please use it correctly !!!";
+    echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }
