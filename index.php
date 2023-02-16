@@ -1,4 +1,4 @@
-<h1>PHP PDO ÖRNEĞİ</h1>
+<h1>Vue3 PDO</h1>
 
-<p><a href='list.html'  > Kayıtları Listele   </a></p>
-<p><a href='insert.html'> Yeni Kullanıcı Ekle </a></p>
+<p><a href='list.html'  > List Users   </a></p>
+<p><a href='insert.html'> Add New User </a></p>
